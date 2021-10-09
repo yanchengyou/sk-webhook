@@ -77,3 +77,11 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+favoriteDrink: coffee
+
+namespace: chart-test
+
+list:
+  - yan
+  - yaa

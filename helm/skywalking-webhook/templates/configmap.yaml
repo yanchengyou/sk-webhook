@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  namespace: {{ include "chart.Namespace" . }}
+data:
+  myvalue: {{ .Values.favoriteDrink|quote }}
+  test: {{ .Values.favoriteDrink | default (printf "%s" (include "fullname" .))  }}
+  {{- block "fullname" .  }}
+  a: "asd"
+  {{- end }}
+  {{- include "fullname" . }}
+{{- /*  {{- template "fullname" .}}*/ -}}
+  {{- range $i,$v:= .Values.list }}
+  {{ $v }}: {{ $i | quote }}
+  {{- end }}
+{{- /*  test: {{ print "%s" (include "fullname" .) }}*/ -}}
+  {{ template "fullname" .}}
